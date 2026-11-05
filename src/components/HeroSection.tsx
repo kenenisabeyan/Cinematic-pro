@@ -117,19 +117,66 @@ export const HeroSection: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right Action */}
-          <a
-            href="#contact"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="group flex items-center space-x-2 text-[11px] tracking-[0.24em] font-light uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] text-[#EAD8C7] transition-all duration-300 backdrop-blur-sm ml-auto md:ml-0"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            <span>LET&apos;S TALK</span>
-            <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
-              ↗
-            </span>
-          </a>
+          {/* Right Action & Mobile Toggle */}
+          <div className="flex items-center space-x-3 ml-auto md:ml-0">
+            <a
+              href="#contact"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="group flex items-center space-x-2 text-[11px] tracking-[0.24em] font-light uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] text-[#EAD8C7] transition-all duration-300 backdrop-blur-sm"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              <span>LET&apos;S TALK</span>
+              <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
+                ↗
+              </span>
+            </a>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden flex flex-col justify-center items-center w-9 h-9 border border-[#8C6D4F]/40 bg-[#120F0C]/80 text-[#EAD8C7] p-2 space-y-1 focus:outline-none transition-colors hover:border-[#D4AF37]"
+              aria-label="Toggle navigation"
+            >
+              <span className={`block w-4 h-[1.5px] bg-[#D4AF37] transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+              <span className={`block w-3 h-[1.5px] bg-[#D4AF37] transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-4 h-[1.5px] bg-[#D4AF37] transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            </button>
+          </div>
+
+          {/* Full-Screen Mobile Drawer */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden fixed inset-x-0 top-[68px] bottom-0 bg-black/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center space-y-6 px-6 border-t border-[#8C6D4F]/30"
+            >
+              {navItems.map((item, idx) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="text-lg tracking-[0.3em] font-light uppercase text-[#EAD8C7] hover:text-[#D4AF37] transition-colors py-2"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-6 text-xs tracking-[0.25em] font-medium uppercase py-3 px-8 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                LET&apos;S TALK ↗
+              </a>
+            </motion.div>
+          )}
         </header>
 
         {/* Main Hero Row */}
