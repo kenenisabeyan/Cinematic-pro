@@ -23,7 +23,7 @@
 
 Designed for **Kenenisa Beyan** — Full-Stack Software Engineer, Computer Science & Engineering student at Adama Science & Technology University (ASTU), Founder of the EDOT education platform, and MinT/KOICA Startup Innovation Fellow.
 
-This portfolio merges **luxury editorial aesthetics** with **rigorous frontend engineering**, featuring real-time 3D physics, hardware-accelerated video layering, and an interactive stacking deck scroll engine.
+This portfolio merges **luxury editorial aesthetics** with **rigorous system architecture**, featuring real-time 3D physics, hardware-accelerated video layering, and an interactive stacking deck scroll engine.
 
 ```
        ✦  C I N E M A T I C   P R E C I S I O N  ✦
@@ -35,7 +35,123 @@ This portfolio merges **luxury editorial aesthetics** with **rigorous frontend e
 
 ---
 
-## ⚡ Key Architectural Highlights
+## 🏛️ System Architecture & Data Flow
+
+### 1. High-Level Full-Stack System Diagram
+
+```mermaid
+flowchart TD
+    subgraph ClientTier ["1. CLIENT PRESENTATION TIER (React 19 & TypeScript)"]
+        UI["Viewport & User Interaction"]
+        Motion["Framer Motion 13 Physics Engine"]
+        LenisScroll["Lenis 1.3 Inertial Scroll Controller"]
+        TailwindCSS["Tailwind CSS v4 Reactive Styling Engine"]
+        
+        UI --> Motion
+        UI --> LenisScroll
+        Motion --> TailwindCSS
+        LenisScroll --> TailwindCSS
+    end
+
+    subgraph ComponentTree ["2. MODULAR COMPONENT HIERARCHY"]
+        App["App.tsx Shell"]
+        Hero["HeroSection (Video Mask + Insignia)"]
+        About["AboutSection (3D Gyro Tilt + Particles)"]
+        Projects["ProjectsSection (ScrollStack Deck)"]
+        Skills["SkillsSection (12-Col Bento Matrix)"]
+        Experience["ExperienceSection (Scroll-Linked Timeline)"]
+        Testimonials["TestimonialsSection (Feedback Matrix)"]
+        Contact["ContactSection (Terminal Form)"]
+
+        App --> Hero
+        App --> About
+        App --> Projects
+        App --> Skills
+        App --> Experience
+        App --> Testimonials
+        App --> Contact
+    end
+
+    subgraph ServiceTier ["3. BACKEND & SERVICE ARCHITECTURE"]
+        API["RESTful API Endpoints (Node.js / Express / Django)"]
+        Auth["Authentication & Granular RBAC (NextAuth / JWT)"]
+        BusinessLogic["Business Logic & Multi-Role Workflows"]
+        
+        API --> Auth
+        Auth --> BusinessLogic
+    end
+
+    subgraph DataTier ["4. DATA PERSISTENCE & OPTIMIZATION"]
+        PG[("PostgreSQL (ACID Relational)")]
+        Mongo[("MongoDB Atlas (Document Store)")]
+        Prisma["Prisma ORM & Indexed Foreign Keys"]
+        
+        BusinessLogic --> Prisma
+        Prisma --> PG
+        Prisma --> Mongo
+    end
+
+    ClientTier <== "Standardized JSON Contracts (HTTPS / WSS)" ==> ServiceTier
+```
+
+---
+
+### 2. Client-Side Rendering & 3D Motion Pipeline
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as User / Pointer
+    participant Hero as Hero Stage (Video + Mask)
+    participant Motion as Framer Motion Engine
+    participant Card as 3D Holographic Card (useSpring)
+    participant Deck as ScrollStack Engine (Lenis)
+    participant GPU as GPU Compositor & Paint Layer
+
+    User->>Hero: Cursor Move & Scroll Event
+    Hero->>Motion: Dispatch raw coordinates (e.clientX, e.clientY)
+    Motion->>Card: Compute 3D physics (rotateX, rotateY via useSpring)
+    Motion->>Card: Compute dynamic radial gold spotlight sweep
+    User->>Deck: Inertial Scroll Input (Lenis 60fps loop)
+    Deck->>Deck: Measure initial top offsets & calculate runway
+    Deck->>Deck: Compute progressive scale(0.88 + i*0.035) & translateY
+    Deck->>GPU: Apply translate3d(0, y, 0) scale(s) (Hardware Accelerated)
+    GPU-->>User: Seamless 60fps cinematic frame rendering
+```
+
+---
+
+### 3. Multi-Role RBAC & Security Workflow
+
+```mermaid
+flowchart LR
+    A["Client Request"] --> B{"Authentication Gate (JWT / NextAuth)"}
+    B -- "Unauthenticated" --> C["401 Unauthorized / Redirect"]
+    B -- "Valid Token" --> D{"Role-Based Access Policy (RBAC)"}
+    
+    D -- "Role: Admin" --> E["Admin Dashboard & Evaluation Audit"]
+    D -- "Role: Staff / Instructor" --> F["Workflows, Progress Tracking & Reviews"]
+    D -- "Role: Student / User" --> G["Course Portal & Profile Workspace"]
+
+    E & F & G --> H["Sanitized Data Layer & Sub-50ms DB Queries"]
+```
+
+---
+
+## ⚡ Architectural Rigor & Quality Standards
+
+| Engineering Pillar | Architectural Standard | Implementation Details |
+| :--- | :--- | :--- |
+| **Clean Architecture & SOLID** | Strict Separation of Concerns | Distinct separation between UI layout, reactive state, business logic, and data schema representations. |
+| **Security & Granular RBAC** | Zero-Trust Role Isolation | Multi-role dashboards, hashed credential storage, JWT tokens, and sanitized inputs mitigating injection attacks. |
+| **Database Optimization** | Sub-50ms Query Performance | Schema normalization in PostgreSQL and MongoDB, indexed foreign keys, optimized joins, and persistent connection pooling. |
+| **Predictable APIs** | RESTful HTTP Contracts | Standardized HTTP status codes, structured JSON responses, input boundary validation, and centralized error handling. |
+| **Component Modularity** | Reusable Component Systems | Type-safe React components powered by TypeScript interfaces, reusable contexts, and decoupled animation controllers. |
+| **Production Readiness** | Enterprise Delivery Standards | Strict environment variable isolation, automated Vite bundler optimization, CORS safety, and minimal bundle footprint. |
+
+---
+
+## ⚡ Key Feature Implementations
 
 ### 1. 🎥 Cinematic Video Stage (`HeroSection.tsx`)
 - **Atmospheric Background Canvas**: Fixed-position, muted looping hero video (`/videos/hero.mp4`) blended using directional gradient masks (`from-black via-black/85 to-transparent`).
