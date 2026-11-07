@@ -14,12 +14,12 @@ export const ContactSection: React.FC = () => {
   return (
     <footer
       id="contact"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
         {/* Split Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Column (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
@@ -50,7 +50,7 @@ export const ContactSection: React.FC = () => {
                 className="mb-8"
               >
                 <h2
-                  className="text-5xl sm:text-6xl md:text-7xl tracking-tight uppercase leading-[0.85] select-none"
+                  className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl tracking-tight uppercase leading-[0.88] select-none break-words"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
                   <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
@@ -73,7 +73,7 @@ export const ContactSection: React.FC = () => {
               <div className="mt-8 space-y-3 pt-6 border-t border-[#8C6D4F]/25">
                 <a
                   href="mailto:kenenisab05@gmail.com"
-                  className="flex items-center space-x-3 text-xs text-[#C4B5A5] hover:text-[#F7E7C4] transition-colors group"
+                  className="flex flex-wrap items-center gap-2 text-xs text-[#C4B5A5] hover:text-[#F7E7C4] transition-colors group break-all"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   <span className="text-[10px] font-mono text-[#D4AF37]">// EMAIL</span>
@@ -81,12 +81,12 @@ export const ContactSection: React.FC = () => {
                   <span className="text-xs group-hover:translate-x-0.5 transition-transform">↗</span>
                 </a>
 
-                <div className="flex items-center space-x-3 text-xs text-[#C4B5A5]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-[#C4B5A5]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   <span className="text-[10px] font-mono text-[#D4AF37]">// LOCATION</span>
                   <span className="tracking-wide text-[#A8988B]">Adama, Ethiopia</span>
                 </div>
 
-                <div className="flex items-center space-x-4 pt-2">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
                   <a
                     href="https://github.com/kenenisabeyan"
                     target="_blank"
@@ -122,7 +122,7 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 relative w-full rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
+            className="lg:col-span-7 relative w-full rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-5 xs:p-7 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
           >
             {/* Top Gold Horizon Edge */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />

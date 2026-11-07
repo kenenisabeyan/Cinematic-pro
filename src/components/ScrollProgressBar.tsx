@@ -38,7 +38,7 @@ export const ScrollProgressBar: React.FC = () => {
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-6 right-6 z-[9900] w-10 h-10 rounded-sm border border-[#8C6D4F]/50 bg-[#120F0C]/90 hover:border-[#D4AF37] hover:bg-[#1A1510] text-[#EAD8C7] hover:text-[#FFF5EB] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.8)] group cursor-pointer"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9900] w-9 h-9 sm:w-10 sm:h-10 rounded-sm border border-[#8C6D4F]/50 bg-[#120F0C]/90 hover:border-[#D4AF37] hover:bg-[#1A1510] text-[#EAD8C7] hover:text-[#FFF5EB] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.8)] group cursor-pointer"
         >
           {/* Subtle Top Gold Edge */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent pointer-events-none" />
