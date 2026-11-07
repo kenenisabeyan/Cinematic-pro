@@ -250,7 +250,25 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     setupLenis();
     updateCardTransforms();
 
+    const handleResize = () => {
+      // Clear transforms temporarily to re-measure natural positions
+      cardsRef.current.forEach((card) => {
+        card.style.transform = 'none';
+      });
+      initialTopsRef.current = cardsRef.current.map((card) => {
+        const rect = card.getBoundingClientRect();
+        return rect.top + window.scrollY;
+      });
+      lastTransformsRef.current.clear();
+      updateCardTransforms();
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('orientationchange', handleResize, { passive: true });
+
     return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
