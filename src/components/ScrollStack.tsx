@@ -102,9 +102,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       if (!card) return;
 
       const cardTop = initialTopsRef.current[i] || 0;
-      const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
+      const cardHeight = card.offsetHeight || 0;
+      
+      // Dynamic clamping: Ensure the card bottom is never pushed off-screen on short/mobile viewports
+      const maxAllowedStack = Math.max(8, containerHeight - cardHeight - 20);
+      const effectiveStackPos = Math.min(stackPositionPx, maxAllowedStack > 8 ? maxAllowedStack : 16);
+
+      const triggerStart = cardTop - effectiveStackPos - itemStackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
+      const pinStart = cardTop - effectiveStackPos - itemStackDistance * i;
       const pinEnd = endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
@@ -117,7 +123,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         let topCardIndex = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
           const jCardTop = initialTopsRef.current[j] || 0;
-          const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
+          const jTriggerStart = jCardTop - effectiveStackPos - itemStackDistance * j;
           if (scrollTop >= jTriggerStart) {
             topCardIndex = j;
           }
@@ -133,9 +139,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
 
       if (isPinned) {
-        translateY = scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
+        translateY = scrollTop - cardTop + effectiveStackPos + itemStackDistance * i;
       } else if (scrollTop > pinEnd) {
-        translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
+        translateY = pinEnd - cardTop + effectiveStackPos + itemStackDistance * i;
       }
 
       const newTransform = {
