@@ -271,31 +271,6 @@ export const HeroSection: React.FC = () => {
               </motion.a>
             </motion.div>
           </motion.div>
-              >
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#E8D7C5]/40 to-transparent pointer-events-none" />
-                <span>EXPLORE MY WORK</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
-                  ↗
-                </span>
-              </motion.a>
-
-              {/* Download Resume Button */}
-              <motion.a
-                href="https://kenenisa-one.vercel.app/Kenenisa_Beyan_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                whileHover={{ scale: 1.02 }}
-                className="relative inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#8C6D4F]/40 hover:border-[#8C6D4F] text-[#BFA895] hover:text-[#EAD8C7] text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300"
-              >
-                <span>DOWNLOAD RESUME</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-xs">
-                  ↓
-                </span>
-              </motion.a>
-            </motion.div>
-          </motion.div>
 
           {/* RIGHT: Floating Quote & Signature Card */}
           <motion.div
